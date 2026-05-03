@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI EPUB 翻譯器 (BYOK 版) - Nordic Dark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap");
+
+      :root {
+        --nord0: #2e3440;
+        --nord1: #3b4252;
+        --nord2: #434c5e;
+        --nord3: #4c566a;
+        --nord4: #d8dee9;
+        --nord5: #e5e9f0;
+        --nord6: #eceff4;
+        --nord7: #8fbcbb;
+        --nord8: #88c0d0;
+        --nord9: #81a1c1;
+        --nord10: #5e81ac;
+        --nord11: #bf616a;
+        --nord14: #a3be8c;
+      }
+
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+        background-color: #1a1e25;
+        color: var(--nord4);
+      }
+
+      .nordic-card {
+        background-color: var(--nord0);
+        border: 1px solid var(--nord2);
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, var(--nord10) 0%, var(--nord8) 100%);
+      }
+
+      .nordic-input {
+        background-color: var(--nord0);
+        border: 1px solid var(--nord2);
+        color: var(--nord6);
+      }
+
+      .nordic-input:focus {
+        border-color: var(--nord8);
+        box-shadow: 0 0 0 2px rgba(136, 192, 208, 0.2);
+      }
+
+      .nordic-select {
+        background-color: var(--nord0);
+        border: 1px solid var(--nord2);
+        color: var(--nord6);
+      }
+
+      .nordic-select:focus {
+        border-color: var(--nord8);
+        box-shadow: 0 0 0 2px rgba(136, 192, 208, 0.2);
+      }
+
+      .nordic-label {
+        color: var(--nord9);
+      }
+
+      .eye-button:hover {
+        color: var(--nord8);
+      }
+
+      .progress-bg {
+        background-color: var(--nord1);
+      }
+
+      .nordic-btn {
+        background: linear-gradient(135deg, var(--nord10) 0%, var(--nord9) 100%);
+        transition: all 0.3s ease;
+      }
+
+      .nordic-btn:hover {
+        background: linear-gradient(135deg, var(--nord9) 0%, var(--nord8) 100%);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(136, 192, 208, 0.4);
+      }
+
+      .nordic-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Custom Scrollbar - Nordic Dark */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--nord0);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--nord3);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--nord8);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen font-sans">
+    <div class="max-w-4xl mx-auto py-12 px-4">
+      <header class="text-center mb-12">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="bg-[#88c0d0]/10 p-3 rounded-2xl border border-[#88c0d0]/20">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 text-[#88c0d0]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              <path d="M12 6l-4 6h8l-4 6"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl font-extrabold text-[#eceff4]">AI EPUB 翻譯器</h1>
+        </div>
+        <p class="text-lg text-[#81a1c1]">輸入 API Key，讓 AI 為您的電子書跨越語言障礙。</p>
+        <p class="text-sm text-[#88c0d0] mt-2">
+          <a
+            href="https://aistudio.google.com/app/apikey"
+            target="_blank"
+            class="underline hover:opacity-80 transition-opacity"
+            >點此申請免費的 Gemini API Key</a
+          >
+        </p>
+      </header>
+
+      <main class="nordic-card rounded-3xl shadow-2xl p-8 md:p-12">
+        <!-- API Key 與 設定區 -->
+        <div class="space-y-8 mb-10">
+          <div class="group">
+            <label class="block text-sm font-semibold nordic-label mb-2">Gemini API Key</label>
+            <div class="relative">
+              <input
+                type="password"
+                id="userApiKey"
+                placeholder="在此貼上您的 API 金鑰"
+                class="nordic-input block w-full rounded-xl p-3 pr-12 outline-none transition-all shadow-sm"
+              />
+              <button
+                id="togglePassword"
+                type="button"
+                class="eye-button absolute right-3 top-1/2 -translate-y-1/2 text-[#4c566a] p-1 focus:outline-none transition-colors"
+              >
+                <svg
+                  id="eyeIcon"
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <p class="text-xs text-[#4c566a] mt-2">您的金鑰僅用於當次翻譯，我們不會儲存或紀錄任何敏感資訊。</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <label class="block text-sm font-semibold nordic-label mb-2">選擇 EPUB 檔案</label>
+              <input
+                type="file"
+                id="epubFile"
+                accept=".epub"
+                class="block w-full text-sm text-[#4c566a] file:mr-4 file:py-2.5 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-[#88c0d0]/10 file:text-[#88c0d0] hover:file:bg-[#88c0d0]/20 transition-all cursor-pointer border border-[#434c5e] rounded-xl p-1.5 shadow-sm"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold nordic-label mb-2">翻譯目標語言</label>
+              <select
+                id="targetLang"
+                class="nordic-select block w-full rounded-xl p-3 outline-none transition-all shadow-sm cursor-pointer"
+              >
+                <option value="English">English (英文)</option>
+                <option value="Traditional Chinese" selected>Traditional Chinese (繁體中文)</option>
+                <option value="Simplified Chinese">Simplified Chinese (簡體中文)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 控制按鈕 -->
+        <div class="flex flex-col items-center gap-6">
+          <button
+            id="startBtn"
+            class="nordic-btn text-white font-bold py-4 px-12 rounded-2xl shadow-xl shadow-[#5e81ac]/20 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
+          >
+            開始翻譯並自動下載
+          </button>
+
+          <!-- 進度條 -->
+          <div id="progressContainer" class="hidden w-full max-w-lg mt-4">
+            <div class="flex justify-between text-sm font-medium text-[#d8dee9] mb-3">
+              <span id="statusText">等待中...</span>
+              <span id="percentText" class="text-[#88c0d0]">0%</span>
+            </div>
+            <div class="w-full progress-bg rounded-full h-3 overflow-hidden">
+              <div
+                id="progressBar"
+                class="gradient-bg h-full rounded-full transition-all duration-500 ease-out"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- 錯誤提示 -->
+      <div
+        id="errorModal"
+        class="hidden fixed inset-0 bg-[#1a1e25]/80 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+      >
+        <div class="nordic-card p-8 rounded-3xl max-w-sm w-full shadow-2xl scale-in transform transition-transform">
+          <div class="w-12 h-12 bg-[#bf616a]/20 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-[#bf616a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-[#bf616a] font-bold text-xl mb-2">發生錯誤</h3>
+          <p id="errorMsg" class="text-[#4c566a] mb-8 leading-relaxed"></p>
+          <button
+            onclick="document.getElementById('errorModal').classList.add('hidden')"
+            class="w-full bg-[#3b4252] hover:bg-[#434c5e] py-3 rounded-xl font-bold transition-colors text-[#eceff4]"
+          >
+            確認並關閉
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const startBtn = document.getElementById("startBtn");
+      const epubInput = document.getElementById("epubFile");
+      const targetLangSelect = document.getElementById("targetLang");
+      const userApiKeyInput = document.getElementById("userApiKey");
+      const togglePasswordBtn = document.getElementById("togglePassword");
+      const eyeIcon = document.getElementById("eyeIcon");
+      const progressContainer = document.getElementById("progressContainer");
+      const progressBar = document.getElementById("progressBar");
+      const statusText = document.getElementById("statusText");
+      const percentText = document.getElementById("percentText");
+      const errorModal = document.getElementById("errorModal");
+      const errorMsg = document.getElementById("errorMsg");
+
+      // Toggle API Key Visibility
+      togglePasswordBtn.addEventListener("click", () => {
+        const type = userApiKeyInput.getAttribute("type") === "password" ? "text" : "password";
+        userApiKeyInput.setAttribute("type", type);
+
+        if (type === "text") {
+          eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"></path>
+                `;
+        } else {
+          eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                `;
+        }
+      });
+
+      async function translateText(text, targetLang, apiKey) {
+        if (!text || text.trim().length === 0) return text;
+
+        const systemPrompt = `You are a professional book translator. Translate the following text into ${targetLang}. 
+            Keep the original tone and style. Preserve all HTML structure or entities. Do not explain the translation.`;
+
+        const payload = {
+          contents: [{ parts: [{ text: text }] }],
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+        };
+
+        const maxRetries = 5;
+        const retryDelays = [1000, 2000, 4000, 8000, 16000];
+
+        for (let i = 0; i < maxRetries; i++) {
+          try {
+            const response = await fetch(
+              `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+              },
+            );
+
+            if (response.status === 401 || response.status === 403)
+              throw new Error("API Key 無效或已過期，請重新確認。");
+
+            if (response.status === 429) {
+              if (i < maxRetries - 1) {
+                await new Promise((res) => setTimeout(res, retryDelays[i]));
+                continue;
+              }
+              throw new Error("達到 API 頻率限制 (Rate Limit)，即使重試也失敗，請稍候再試。");
+            }
+
+            if (!response.ok) throw new Error(`API 回傳錯誤: ${response.status}`);
+
+            const result = await response.json();
+            return result.candidates?.[0]?.content?.parts?.[0]?.text || text;
+          } catch (err) {
+            if (err.message.includes("API Key") || i === maxRetries - 1) throw err;
+            await new Promise((res) => setTimeout(res, retryDelays[i]));
+          }
+        }
+      }
+
+      async function processDocument(content, targetLang, apiKey, updateStatus) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(content, "application/xhtml+xml");
+        const textNodes = [];
+        const walk = document.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while ((node = walk.nextNode())) {
+          if (node.textContent.trim().length > 0) textNodes.push(node);
+        }
+
+        // 改為順序執行 (Sequential) 而非 Parallel，以極大程度減少 Rate Limit 觸發
+        for (let i = 0; i < textNodes.length; i++) {
+          updateStatus(`翻譯章節進度... (${Math.round((i / textNodes.length) * 100)}%)`);
+          try {
+            textNodes[i].textContent = await translateText(textNodes[i].textContent, targetLang, apiKey);
+            // 在請求之間加入微小的延遲，確保穩定
+            if (i % 3 === 0) await new Promise((r) => setTimeout(r, 100));
+          } catch (e) {
+            console.error("Translation Node Failed", e);
+            // 如果是 Rate Limit 錯誤，我們已經在 translateText 處理過重試，這裡記錄失敗
+          }
+        }
+        return new XMLSerializer().serializeToString(doc);
+      }
+
+      startBtn.addEventListener("click", async () => {
+        const apiKey = userApiKeyInput.value.trim();
+        const file = epubInput.files[0];
+
+        if (!apiKey) return showError("請輸入您的 Gemini API Key。");
+        if (!file) return showError("請選取一個 EPUB 電子書檔案。");
+
+        const targetLang = targetLangSelect.value;
+        startBtn.disabled = true;
+        progressContainer.classList.remove("hidden");
+
+        try {
+          const zip = await JSZip.loadAsync(file);
+          const newZip = new JSZip();
+          const files = Object.keys(zip.files);
+          let count = 0;
+
+          for (const path of files) {
+            const zipFile = zip.files[path];
+            if (path.match(/\.(html|xhtml|htm)$/i)) {
+              updateProgress((count / files.length) * 100, `處理章節: ${path.split("/").pop()}`);
+              const content = await zipFile.async("string");
+              const translated = await processDocument(content, targetLang, apiKey, (m) => (statusText.innerText = m));
+              newZip.file(path, translated);
+            } else {
+              const blob = await zipFile.async("blob");
+              newZip.file(path, blob);
+            }
+            count++;
+            updateProgress((count / files.length) * 100);
+          }
+
+          updateProgress(100, "翻譯大功告成！");
+          const result = await newZip.generateAsync({ type: "blob" });
+          const url = URL.createObjectURL(result);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `[${targetLang}] ${file.name}`;
+          a.click();
+          statusText.innerText = "檔案已下載";
+        } catch (err) {
+          showError(err.message);
+        } finally {
+          startBtn.disabled = false;
+        }
+      });
+
+      function updateProgress(percent, msg) {
+        const p = Math.min(Math.round(percent), 100);
+        progressBar.style.width = p + "%";
+        percentText.innerText = p + "%";
+        if (msg) statusText.innerText = msg;
+      }
+
+      function showError(msg) {
+        errorMsg.innerText = msg;
+        errorModal.classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>

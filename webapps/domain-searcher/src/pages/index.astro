@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import DomainSearcher from "../components/DomainSearcher";
+
+const tldEntries = await getCollection("tlds");
+const tlds = tldEntries.map((e) => e.data.tld);
+const tldTypes: Record<string, string> = {};
+for (const e of tldEntries) {
+  tldTypes[e.data.tld] = e.data.type;
+}
+
+const priceEntries = await getCollection("prices");
+const prices: Record<string, { registration: number; renewal: number; source: string }> = {};
+for (const e of priceEntries) {
+  prices[e.id] = { registration: e.data.registration, renewal: e.data.renewal, source: e.data.source };
+}
+---
+
+<Layout title="Domain Searcher">
+  <DomainSearcher client:load tlds={tlds} tldTypes={tldTypes} initialPrices={prices} />
+</Layout>

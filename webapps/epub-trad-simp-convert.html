@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EPUB 繁簡批量轉換工具 - Nordic Dark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/full.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap");
+
+      :root {
+        --nord0: #2e3440;
+        --nord1: #3b4252;
+        --nord2: #434c5e;
+        --nord3: #4c566a;
+        --nord4: #d8dee9;
+        --nord5: #e5e9f0;
+        --nord6: #eceff4;
+        --nord7: #8fbcbb;
+        --nord8: #88c0d0;
+        --nord9: #81a1c1;
+        --nord10: #5e81ac;
+        --nord11: #bf616a;
+        --nord14: #a3be8c;
+      }
+
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+        background-color: #1a1e25;
+        color: var(--nord4);
+      }
+
+      .nordic-card {
+        background-color: var(--nord0);
+        border: 1px solid var(--nord2);
+      }
+
+      .drop-zone {
+        border: 2px dashed var(--nord3);
+        transition: all 0.3s ease;
+      }
+
+      .drop-zone.dragover {
+        border-color: var(--nord8);
+        background-color: var(--nord1);
+      }
+
+      .drop-zone:hover {
+        border-color: var(--nord9);
+      }
+
+      .radio-option {
+        border: 2px solid var(--nord3);
+        transition: all 0.3s ease;
+      }
+
+      .radio-option:hover {
+        background-color: var(--nord1);
+      }
+
+      input[type="radio"]:checked + .radio-option {
+        border-color: var(--nord8);
+        background-color: rgba(136, 192, 208, 0.1);
+      }
+
+      .nordic-btn {
+        background: linear-gradient(135deg, var(--nord10) 0%, var(--nord9) 100%);
+        transition: all 0.3s ease;
+      }
+
+      .nordic-btn:hover {
+        background: linear-gradient(135deg, var(--nord9) 0%, var(--nord8) 100%);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(136, 192, 208, 0.4);
+      }
+
+      /* Custom Scrollbar - Nordic Dark */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--nord0);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--nord3);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--nord8);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen font-sans">
+    <div class="max-w-4xl mx-auto py-12 px-4">
+      <header class="text-center mb-10">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="bg-[#88c0d0]/10 p-3 rounded-2xl border border-[#88c0d0]/20">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 text-[#88c0d0]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 7V4h16v3"></path>
+              <path d="M9 20h6"></path>
+              <path d="M12 4v16"></path>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold text-[#eceff4]">EPUB 繁簡批量轉換器</h1>
+        </div>
+        <p class="text-[#81a1c1]">純瀏覽器端處理，您的檔案不會被上傳到伺服器，安全且隱私。</p>
+      </header>
+
+      <!-- 設定區域 -->
+      <div class="nordic-card p-6 rounded-xl shadow-sm mb-8">
+        <h2 class="text-lg font-semibold mb-4 flex items-center text-[#eceff4]">
+          <span class="bg-[#88c0d0]/10 text-[#88c0d0] p-1 rounded mr-2 text-sm px-2">1</span>
+          設定轉換方向
+        </h2>
+        <div class="flex flex-wrap gap-4">
+          <label class="relative flex-1 min-w-[150px] cursor-pointer">
+            <input type="radio" name="direction" value="t2s" checked class="peer sr-only" />
+            <div class="radio-option p-4 rounded-lg text-center transition-all text-[#eceff4]">
+              <div class="font-medium">繁體 → 簡體</div>
+              <div class="text-xs text-[#81a1c1] mt-1">S2T (OpenCC)</div>
+            </div>
+          </label>
+          <label class="relative flex-1 min-w-[150px] cursor-pointer">
+            <input type="radio" name="direction" value="s2t" class="peer sr-only" />
+            <div class="radio-option p-4 rounded-lg text-center transition-all text-[#eceff4]">
+              <div class="font-medium">簡體 → 繁體</div>
+              <div class="text-xs text-[#81a1c1] mt-1">T2S (OpenCC)</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- 上傳區域 -->
+      <div id="dropZone" class="drop-zone nordic-card p-12 rounded-xl shadow-sm text-center mb-8 cursor-pointer">
+        <input type="file" id="fileInput" multiple accept=".epub" class="hidden" />
+        <div class="text-[#88c0d0] mb-4 text-5xl">📚</div>
+        <p class="text-lg font-medium text-[#eceff4]">點擊或拖拽多個 EPUB 檔案至此</p>
+        <p class="text-sm text-[#4c566a] mt-2">支援一次選擇多個檔案批量處理</p>
+      </div>
+
+      <!-- 任務列表 -->
+      <div id="taskList" class="space-y-3">
+        <!-- 任務會動態插入這裡 -->
+      </div>
+
+      <!-- 底部清空按鈕 -->
+      <div id="footerActions" class="mt-8 text-center hidden">
+        <button onclick="clearTasks()" class="text-[#4c566a] hover:text-[#bf616a] text-sm underline transition-colors">
+          清空所有任務
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const dropZone = document.getElementById("dropZone");
+      const fileInput = document.getElementById("fileInput");
+      const taskList = document.getElementById("taskList");
+      const footerActions = document.getElementById("footerActions");
+
+      const converters = {
+        t2s: OpenCC.Converter({ from: "t", to: "cn" }),
+        s2t: OpenCC.Converter({ from: "cn", to: "t" }),
+      };
+
+      dropZone.addEventListener("click", () => fileInput.click());
+
+      dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.classList.add("dragover");
+      });
+
+      dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("dragover");
+      });
+
+      dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("dragover");
+        handleFiles(e.dataTransfer.files);
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        handleFiles(e.target.files);
+      });
+
+      function handleFiles(files) {
+        const epubFiles = Array.from(files).filter((f) => f.name.toLowerCase().endsWith(".epub"));
+        if (epubFiles.length === 0) return;
+
+        footerActions.classList.remove("hidden");
+        const direction = document.querySelector('input[name="direction"]:checked').value;
+
+        epubFiles.forEach((file) => {
+          createTask(file, direction);
+        });
+      }
+
+      async function createTask(file, direction) {
+        const taskId = "task-" + Math.random().toString(36).substr(2, 9);
+        const taskEl = document.createElement("div");
+        taskEl.className =
+          "nordic-card p-4 rounded-lg shadow-sm flex items-center justify-between transition-all animate-in fade-in slide-in-from-bottom-2 duration-300";
+        taskEl.id = taskId;
+
+        taskEl.innerHTML = `
+                <div class="flex items-center space-x-4">
+                    <div class="text-2xl opacity-80">📄</div>
+                    <div>
+                        <div class="text-sm font-medium text-[#eceff4] truncate max-w-[200px] md:max-w-[400px]">${file.name}</div>
+                        <div class="text-xs text-[#81a1c1] status-text">等待中...</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="progress-bar-container w-24 h-1.5 bg-[#3b4252] rounded-full overflow-hidden hidden">
+                        <div class="progress-bar bg-[#88c0d0] h-full w-0 transition-all duration-300"></div>
+                    </div>
+                    <div class="action-btn">
+                        <span class="text-[#88c0d0] text-sm animate-pulse">處理中...</span>
+                    </div>
+                </div>
+            `;
+
+        taskList.appendChild(taskEl);
+
+        try {
+          const convertedBlob = await processEpub(file, direction, taskId);
+          updateTaskSuccess(taskId, convertedBlob, file.name, direction);
+        } catch (err) {
+          console.error(err);
+          updateTaskError(taskId, err.message);
+        }
+      }
+
+      async function processEpub(file, direction, taskId) {
+        const converter = converters[direction];
+        const statusText = document.querySelector(`#${taskId} .status-text`);
+        const progressContainer = document.querySelector(`#${taskId} .progress-bar-container`);
+        const progressBar = document.querySelector(`#${taskId} .progress-bar`);
+
+        progressContainer.classList.remove("hidden");
+        statusText.innerText = "讀取檔案...";
+
+        const zip = await JSZip.loadAsync(file);
+        const files = Object.keys(zip.files);
+        let processedCount = 0;
+
+        for (const filename of files) {
+          const zipEntry = zip.files[filename];
+
+          if (filename.match(/\.(html|xhtml|htm|opf|ncx)$|toc\.ncx/i)) {
+            const content = await zipEntry.async("string");
+            const convertedContent = converter(content);
+            zip.file(filename, convertedContent);
+          }
+
+          processedCount++;
+          const progress = Math.round((processedCount / files.length) * 100);
+          progressBar.style.width = `${progress}%`;
+          statusText.innerText = `轉換內容... ${progress}%`;
+        }
+
+        statusText.innerText = "封裝檔案...";
+        return await zip.generateAsync({ type: "blob", mimeType: "application/epub+zip" });
+      }
+
+      function updateTaskSuccess(taskId, blob, originalName, direction) {
+        const taskEl = document.getElementById(taskId);
+        const statusText = taskEl.querySelector(".status-text");
+        const actionBtn = taskEl.querySelector(".action-btn");
+        const progressContainer = taskEl.querySelector(".progress-bar-container");
+
+        progressContainer.classList.add("hidden");
+        statusText.innerText = "轉換完成";
+        statusText.classList.remove("text-[#81a1c1]");
+        statusText.classList.add("text-[#a3be8c]");
+
+        const suffix = direction === "t2s" ? "_簡體" : "_繁體";
+        const newName = originalName.replace(/\.epub$/i, suffix + ".epub");
+        const url = URL.createObjectURL(blob);
+
+        actionBtn.innerHTML = `
+                <a href="${url}" download="${newName}" class="nordic-btn text-white px-4 py-1.5 rounded text-sm font-medium transition-colors shadow-sm">
+                    下載
+                </a>
+            `;
+      }
+
+      function updateTaskError(taskId, errorMsg) {
+        const taskEl = document.getElementById(taskId);
+        const statusText = taskEl.querySelector(".status-text");
+        const actionBtn = taskEl.querySelector(".action-btn");
+
+        statusText.innerText = "失敗: " + errorMsg;
+        statusText.classList.add("text-[#bf616a]");
+        actionBtn.innerHTML = `<span class="text-[#bf616a] text-sm font-medium">❌</span>`;
+      }
+
+      function clearTasks() {
+        taskList.innerHTML = "";
+        footerActions.classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>

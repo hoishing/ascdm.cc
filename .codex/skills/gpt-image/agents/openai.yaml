@@ -1,0 +1,4 @@
+interface:
+  display_name: "GPT Image"
+  short_description: "Generate ascdm.cc landing-page images in ChatGPT."
+  default_prompt: "Use the in-app browser ChatGPT workflow to generate the planned site images with Instant mode and save them into assets/."
