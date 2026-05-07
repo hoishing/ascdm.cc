@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Session Dashbaord</title>
+  <meta name="description" content="Local-first dashboard for browsing, searching, and managing Claude Code session history. View stats, costs, and conversations — all data stays on your machine.">
+  <meta name="theme-color" content="#1d232a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#faf7f5" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://ai-session-dashbaord.hcai.cc">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI Session Dashbaord">
+  <meta property="og:description" content="Local-first dashboard for browsing, searching, and managing Claude Code session history.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ai-session-dashbaord.hcai.cc">
+  <meta property="og:site_name" content="AI Session Dashbaord">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://ai-session-dashbaord.hcai.cc/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AI Session Dashbaord — local-first session history viewer">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Session Dashbaord">
+  <meta name="twitter:description" content="Local-first dashboard for browsing, searching, and managing Claude Code session history.">
+  <meta name="twitter:image" content="https://ai-session-dashbaord.hcai.cc/og-image.png">
+  <meta name="twitter:image:alt" content="AI Session Dashbaord — local-first session history viewer">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Session Dashbaord",
+    "description": "Local-first dashboard for browsing, searching, and managing Claude Code session history. View stats, costs, and conversations — all data stays on your machine.",
+    "url": "https://ai-session-dashbaord.hcai.cc",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0" }
+  }
+  </script>
+  <script>document.documentElement.classList.toggle('dark', (localStorage.getItem('theme') || 'dark') === 'dark');</script>
+</head>
+<body class="h-screen overflow-hidden bg-background text-foreground">
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

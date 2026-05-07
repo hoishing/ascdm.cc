@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["bun", "node"],
+    "lib": ["ES2022", "DOM"],
+    "rootDir": "..",
+    "noEmit": true
+  },
+  "include": [
+    "./**/*.ts",
+    "../src/lib/file-ops.ts",
+    "../src/lib/parsers.ts",
+    "../src/lib/types.ts",
+    "../src/data/claude-api.ts",
+    "../src/data/search.ts",
+    "../src/data/plan-api.ts"
+  ]
+}
