@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
+  base: "/webapps/ai-session-dashbaord/",
   plugins: [react(), tailwindcss()],
   server: {
     host: true,

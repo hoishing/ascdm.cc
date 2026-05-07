@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  base: '/webapps/domain-searcher',
   integrations: [react()],
 
   vite: {

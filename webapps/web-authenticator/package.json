@@ -7,7 +7,7 @@
     "css:build": "tailwindcss -i ./src/styles.source.css -o ./src/styles.css --minify",
     "dev": "bun run css:build && bun --hot ./index.ts",
     "start": "bun run css:build && bun ./index.ts",
-    "build": "bun run css:build && bun build ./index.html --outdir ./dist --minify && cp manifest.webmanifest service-worker.js favicon.svg ./dist/ && mkdir -p ./dist/icons && cp ./icons/* ./dist/icons/",
+    "build": "rm -rf dist && bun run css:build && bun build ./index.html --outdir ./dist --minify && cp manifest.webmanifest service-worker.js favicon.svg ./dist/ && mkdir -p ./dist/icons && cp ./icons/* ./dist/icons/",
     "e2e": "playwright test"
   },
   "devDependencies": {

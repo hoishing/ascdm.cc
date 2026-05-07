@@ -14,7 +14,10 @@
     "dev:ppt-doc-compressor": "bun --filter ppt-doc-compressor dev",
     "dev:web-authenticator": "bun --filter web-authenticator dev",
     "dev:xmp-editor": "bun --filter xmp-editor dev",
+    "build": "bun run build:static",
+    "build:static": "bun run build:webapps && bun run assemble:static",
     "build:webapps": "bun --workspaces --sequential run build",
+    "assemble:static": "uv run scripts/assemble_static.py",
     "test:e2e": "playwright test"
   },
   "devDependencies": {
