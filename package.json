@@ -3,8 +3,18 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
+  "packageManager": "bun@1.3.13",
+  "workspaces": [
+    "webapps/*"
+  ],
   "scripts": {
     "dev": "python3 -m http.server 4173",
+    "dev:ai-session-dashbaord": "bun --filter ai-session-dashbaord dev",
+    "dev:domain-searcher": "bun --filter domain-searcher dev",
+    "dev:ppt-doc-compressor": "bun --filter ppt-doc-compressor dev",
+    "dev:web-authenticator": "bun --filter web-authenticator dev",
+    "dev:xmp-editor": "bun --filter xmp-editor dev",
+    "build:webapps": "bun --workspaces --sequential run build",
     "test:e2e": "playwright test"
   },
   "devDependencies": {

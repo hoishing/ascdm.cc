@@ -1,0 +1,452 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+@import "tailwindcss";
+@import "@heroui/styles";
+
+:root,
+.light,
+.default,
+[data-theme="light"],
+[data-theme="default"] {
+  --accent: oklch(77.36% 0.1735 65.05);
+  --accent-foreground: oklch(15% 0.0300 65.05);
+  --background: oklch(97.02% 0.0000 65.05);
+  --border: oklch(90.00% 0.0000 65.05);
+  --danger: oklch(65.32% 0.2328 3.09);
+  --danger-foreground: oklch(99.11% 0 0);
+  --default: oklch(94.00% 0.0000 65.05);
+  --default-foreground: oklch(21.03% 0.0059 65.05);
+  --field-background: oklch(100.00% 0.0000 65.05);
+  --field-foreground: oklch(21.03% 0.0000 65.05);
+  --field-placeholder: oklch(55.17% 0.0000 65.05);
+  --focus: oklch(77.36% 0.1735 65.05);
+  --foreground: oklch(21.03% 0.0000 65.05);
+  --muted: oklch(55.17% 0.0000 65.05);
+  --overlay: oklch(100.00% 0.0000 65.05);
+  --overlay-foreground: oklch(21.03% 0.0000 65.05);
+  --scrollbar: oklch(87.10% 0.0000 65.05);
+  --segment: oklch(100.00% 0.0000 65.05);
+  --segment-foreground: oklch(21.03% 0.0000 65.05);
+  --separator: oklch(92.00% 0.0000 65.05);
+  --success: oklch(73.29% 0.1935 128.16);
+  --success-foreground: oklch(21.03% 0.0059 128.16);
+  --surface: oklch(100.00% 0.0000 65.05);
+  --surface-foreground: oklch(21.03% 0.0000 65.05);
+  --surface-secondary: oklch(95.24% 0.0000 65.05);
+  --surface-secondary-foreground: oklch(21.03% 0.0000 65.05);
+  --surface-tertiary: oklch(93.73% 0.0000 65.05);
+  --surface-tertiary-foreground: oklch(21.03% 0.0000 65.05);
+  --warning: oklch(78.19% 0.1585 49.68);
+  --warning-foreground: oklch(21.03% 0.0059 49.68);
+  --radius: 0.25rem;
+  --field-radius: 0.5rem;
+  --surface-radius: var(--field-radius);
+  --toolbar-control-height: 2.25rem;
+  --font-instrument-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: var(--font-instrument-sans);
+}
+
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --accent: oklch(77.36% 0.1735 65.05);
+  --accent-foreground: oklch(15% 0.0300 65.05);
+  --background: oklch(12.00% 0.0000 65.05);
+  --border: oklch(28.00% 0.0000 65.05);
+  --danger: oklch(59.40% 0.1967 1.98);
+  --danger-foreground: oklch(99.11% 0 0);
+  --default: oklch(27.40% 0.0000 65.05);
+  --default-foreground: oklch(99.11% 0 0);
+  --field-background: oklch(21.03% 0.0000 65.05);
+  --field-foreground: oklch(99.11% 0.0000 65.05);
+  --field-placeholder: oklch(70.50% 0.0000 65.05);
+  --focus: oklch(77.36% 0.1735 65.05);
+  --foreground: oklch(99.11% 0.0000 65.05);
+  --muted: oklch(70.50% 0.0000 65.05);
+  --overlay: oklch(21.03% 0.0000 65.05);
+  --overlay-foreground: oklch(99.11% 0.0000 65.05);
+  --scrollbar: oklch(70.50% 0.0000 65.05);
+  --segment: oklch(39.64% 0.0000 65.05);
+  --segment-foreground: oklch(99.11% 0.0000 65.05);
+  --separator: oklch(25.00% 0.0000 65.05);
+  --success: oklch(73.29% 0.1935 128.16);
+  --success-foreground: oklch(21.03% 0.0059 128.16);
+  --surface: oklch(21.03% 0.0000 65.05);
+  --surface-foreground: oklch(99.11% 0.0000 65.05);
+  --surface-secondary: oklch(25.70% 0.0000 65.05);
+  --surface-secondary-foreground: oklch(99.11% 0.0000 65.05);
+  --surface-tertiary: oklch(27.21% 0.0000 65.05);
+  --surface-tertiary-foreground: oklch(99.11% 0.0000 65.05);
+  --warning: oklch(82.03% 0.1388 53.69);
+  --warning-foreground: oklch(21.03% 0.0059 53.69);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--surface-secondary) 34%, transparent), transparent 260px),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 16px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(1120px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0 28px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid color-mix(in oklab, var(--accent) 48%, transparent);
+  border-radius: var(--surface-radius);
+  background: var(--surface-tertiary);
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(0.924rem, 2.24vw, 1.26rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.top-bar p {
+  font-size: 0.8rem;
+}
+
+.add-form,
+.toolbar,
+.record-row,
+.list-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.add-form {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--surface-radius);
+  background: color-mix(in oklab, var(--surface) 90%, transparent);
+  grid-template-columns: repeat(2, minmax(200px, 1fr)) auto;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: var(--surface-foreground);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.add-form label {
+  font-weight: 400;
+}
+
+.toolbar {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  margin: 18px 0 12px;
+  align-items: center;
+}
+
+.toolbar > .button,
+.toolbar .utility-button {
+  width: 88px;
+  min-height: var(--toolbar-control-height);
+  height: var(--toolbar-control-height);
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--surface-radius);
+  background: var(--surface-secondary);
+  color: var(--foreground);
+  font-size: 14px;
+  font-weight: 400;
+  gap: 7px;
+  justify-content: center;
+}
+
+.toolbar > .button:hover,
+.toolbar .utility-button:hover {
+  background: var(--surface-tertiary);
+}
+
+.search-field {
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.search-field__group,
+.search-field [role="group"] {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: var(--toolbar-control-height);
+  height: var(--toolbar-control-height);
+  width: 100%;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--surface-radius);
+  background: var(--surface-secondary);
+  color: var(--foreground);
+  font-size: 14px;
+}
+
+.search-field__clear-button {
+  border-radius: var(--surface-radius);
+}
+
+.search-field input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--field-foreground);
+  font-size: 14px;
+}
+
+.countdown {
+  min-width: 58px;
+  height: var(--toolbar-control-height);
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--surface-radius);
+  background: var(--surface-secondary);
+  color: var(--accent);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--toolbar-control-height);
+}
+
+.totp-list {
+  overflow: hidden;
+  padding: 0 4px 4px;
+  border: 0;
+  border-radius: var(--surface-radius);
+  background: var(--surface-secondary);
+}
+
+.list-header {
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 68%, transparent);
+  background: var(--surface-secondary);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
+  border-top-left-radius: var(--surface-radius);
+  border-top-right-radius: var(--surface-radius);
+}
+
+.list-header [role="columnheader"] {
+  border-radius: var(--surface-radius);
+}
+
+.record-row {
+  align-items: center;
+  min-height: 56px;
+  padding: 12px 16px;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 50%, transparent);
+  background: var(--surface);
+  font-size: 14px;
+}
+
+.record-row:last-child {
+  border-bottom: 0;
+}
+
+.list-header + .record-row {
+  border-top-left-radius: var(--surface-radius);
+  border-top-right-radius: var(--surface-radius);
+}
+
+.record-row:last-of-type {
+  border-bottom: 0;
+  border-bottom-left-radius: var(--surface-radius);
+  border-bottom-right-radius: var(--surface-radius);
+}
+
+.passcode-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 28px;
+  height: 28px;
+  min-width: 9ch;
+  padding: 0;
+  border: 0;
+  border-radius: var(--surface-radius);
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.passcode-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.passcode-button:hover {
+  color: var(--accent);
+}
+
+.passcode-button svg {
+  color: var(--muted);
+}
+
+.passcode-button:hover svg {
+  color: var(--accent);
+}
+
+.description-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.description-text {
+  overflow-wrap: anywhere;
+}
+
+.record-actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 6px;
+  width: 132px;
+}
+
+.record-actions .button {
+  width: 100%;
+  min-height: 32px;
+  height: 32px;
+  min-width: 0;
+  border-radius: var(--surface-radius);
+}
+
+.empty-state {
+  padding: 28px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.add-button {
+  border-radius: var(--surface-radius);
+}
+
+.add-form .add-button {
+  width: var(--toolbar-control-height);
+  min-width: var(--toolbar-control-height);
+  height: var(--toolbar-control-height);
+  min-height: var(--toolbar-control-height);
+}
+
+.add-form .pale-input {
+  width: 100%;
+  min-width: 0;
+  border-color: var(--border);
+  background: var(--field-background);
+  color: var(--field-foreground);
+  font-weight: 400;
+}
+
+.add-form .pale-input::placeholder {
+  color: var(--field-placeholder);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100vw - 20px, 680px);
+    padding-top: 18px;
+  }
+
+  .toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .search-field {
+    min-width: 0;
+  }
+
+  .record-row,
+  .list-header {
+    grid-template-columns: minmax(92px, auto) minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+}
+
+@media (max-width: 516px) {
+  .add-form {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .add-form label {
+    grid-column: 1 / -1;
+  }
+
+  .add-form .add-button {
+    grid-column: 2;
+    justify-self: end;
+  }
+}
