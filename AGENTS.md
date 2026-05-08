@@ -30,5 +30,5 @@ export CLOUDFLARE_API_KEY="$CLOUDFLARE_USER_API_KEY"
 export CLOUDFLARE_EMAIL="ascdm.cc@gmail.com"
 export CLOUDFLARE_ACCOUNT_ID="b24c8fbd73933a12f3a99af9335b4041"
 unset CLOUDFLARE_API_TOKEN
-bunx wrangler pages deploy dist --project-name ascdm-cc --branch main
+wrangler pages deploy . --project-name ascdm-cc --branch main
 ```

@@ -15,14 +15,21 @@
     <meta property="og:image" content="https://ascdm.cc/assets/ascdm-hero.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://ascdm.cc/" />
-    <link rel="preload" href="/assets/ascdm-hero.png" as="image" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/ascdm-logo.svg" />
+    <link rel="preload" href="assets/ascdm-hero.png" as="image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body style="font-size: 2px; background-color: rgb(255, 255, 255); font-family: Manrope">
     <header class="site-header" aria-label="主要導覽">
       <a class="brand" href="#top" aria-label="上升數位行銷顧問首頁">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>
+        <img class="brand-logo" src="assets/ascdm-logo.svg" alt="" width="36" height="36" />
+        <span class="brand-text">
           <strong>上升數位行銷顧問</strong>
           <small>Ascendant Digital Marketing Consultancy</small>
         </span>
@@ -31,171 +38,410 @@
         <a href="#services">服務</a>
         <a href="#process">流程</a>
         <a href="#reporting">報告</a>
+        <a href="#contact">聯絡</a>
       </nav>
-      <a class="header-cta" href="mailto:sales@ascdm.cc">聯絡</a>
+      <a class="header-cta" href="mailto:sales@ascdm.cc">
+        <span>聯絡我們</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true" width="14" height="14">
+          <path d="M3 8h9M8.5 4 12.5 8 8.5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </header>
 
     <main id="top">
+      <!-- HERO -->
       <section class="hero" aria-labelledby="hero-title">
-        <img class="hero-image" src="/assets/ascdm-hero.png" alt="數據儀表板、內容行事曆與工作流程畫面" />
-        <div class="hero-overlay" aria-hidden="true"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Taiwan · Kaohsiung · SEO · Content Operations · Analytics</p>
-          <h1 id="hero-title">讓搜尋需求變成可持續成長的內容營運系統</h1>
-          <p class="hero-copy">
-            上升數位行銷顧問協助台灣品牌建立 SEO、內容、分析報告與電郵社群再利用流程，讓每一篇內容都能被規劃、發佈、追蹤與持續優化。
-          </p>
-          <div class="hero-actions" aria-label="首屏行動">
-            <a class="primary-cta" href="mailto:sales@ascdm.cc">聯絡 sales@ascdm.cc</a>
-            <a class="secondary-cta" href="#process">查看我們如何運作</a>
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              Taiwan · Kaohsiung · SEO · Content Ops · Analytics
+            </p>
+            <h1 id="hero-title">
+              讓搜尋需求變成<br />
+              <em>可持續成長</em>的內容營運系統
+            </h1>
+            <p class="hero-copy">
+              上升數位行銷顧問協助台灣品牌建立 SEO、內容、分析報告與電郵社群再利用流程，讓每一篇內容都能被規劃、發佈、追蹤與持續優化。
+            </p>
+            <div class="hero-actions" aria-label="首屏行動">
+              <a class="primary-cta" href="mailto:sales@ascdm.cc">
+                <span>聯絡 sales@ascdm.cc</span>
+                <svg viewBox="0 0 16 16" aria-hidden="true" width="16" height="16">
+                  <path d="M3 8h9M8.5 4 12.5 8 8.5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="secondary-cta" href="#process">查看我們如何運作</a>
+            </div>
+
+            <dl class="hero-stats" aria-label="重點能力">
+              <div>
+                <dt>關鍵字機會</dt>
+                <dd><span class="stat-num">120+</span><span class="stat-unit">／月</span></dd>
+              </div>
+              <div>
+                <dt>內容中心節奏</dt>
+                <dd><span class="stat-num">週</span><span class="stat-unit">／報告</span></dd>
+              </div>
+              <div>
+                <dt>追蹤指標</dt>
+                <dd><span class="stat-num">GSC</span><span class="stat-unit">·GA4·Ahrefs</span></dd>
+              </div>
+            </dl>
           </div>
+
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-photo">
+              <img src="assets/ascdm-hero.png" alt="" />
+              <div class="hero-photo-frame"></div>
+            </div>
+
+            <div class="hero-card hero-card--metric">
+              <div class="hero-card-head">
+                <span class="hero-card-label">Organic clicks</span>
+                <span class="hero-card-delta">▲ 38%</span>
+              </div>
+              <svg class="sparkline" viewBox="0 0 220 64" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="spark-fill" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#005C8A" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#005C8A" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 50 L20 46 L40 48 L60 40 L80 38 L100 32 L120 30 L140 22 L160 24 L180 16 L200 12 L220 6"
+                      fill="none" stroke="#005C8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M0 50 L20 46 L40 48 L60 40 L80 38 L100 32 L120 30 L140 22 L160 24 L180 16 L200 12 L220 6 L220 64 L0 64 Z"
+                      fill="url(#spark-fill)"/>
+              </svg>
+              <div class="hero-card-foot">
+                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+              </div>
+            </div>
+
+            <div class="hero-card hero-card--list">
+              <div class="hero-card-head">
+                <span class="hero-card-label">Content pipeline</span>
+                <span class="hero-card-tag">06 / 24</span>
+              </div>
+              <ul>
+                <li><span class="dot dot--done"></span><span>Pillar：高雄電商 SEO 指南</span><span class="rt">已上架</span></li>
+                <li><span class="dot dot--prog"></span><span>Supporting：FAQ 八題</span><span class="rt">撰寫中</span></li>
+                <li><span class="dot dot--queue"></span><span>Repurpose：EDM + IG</span><span class="rt">排程</span></li>
+              </ul>
+            </div>
+          </aside>
         </div>
       </section>
 
+      <!-- TRUST BAR -->
+      <section class="trust-bar" aria-label="工作介面">
+        <span class="trust-label">Working surfaces</span>
+        <ul>
+          <li>Google Search Console</li>
+          <li>GA4</li>
+          <li>Ahrefs</li>
+          <li>Shopify</li>
+          <li>Looker Studio</li>
+          <li>Notion</li>
+        </ul>
+      </section>
+
+      <!-- PROBLEM -->
       <section class="section problem-section" aria-labelledby="problem-title">
-        <div class="section-heading">
-          <p class="eyebrow">Current State</p>
+        <header class="section-heading">
+          <p class="eyebrow"><span class="num">01</span>Current State</p>
           <h2 id="problem-title">你的內容不是不夠多，而是缺少可追蹤的營運系統</h2>
-        </div>
+          <p class="section-lede">大部分品牌不是缺工具，而是缺一條能把資料、內容與行動串起來的節奏。我們先指認問題，再提出可執行的下一步。</p>
+        </header>
         <div class="problem-grid">
           <article>
-            <span aria-hidden="true">01</span>
+            <span class="card-num" aria-hidden="true">01</span>
             <h3>不知道哪些關鍵字值得投資</h3>
             <p>資料分散在 GSC、GA4、Ahrefs 與站內內容，缺少能排序的機會清單。</p>
           </article>
           <article>
-            <span aria-hidden="true">02</span>
+            <span class="card-num" aria-hidden="true">02</span>
             <h3>文章有發，但沒有人追蹤排名與 CTR</h3>
             <p>內容發佈後沒有固定回顧，標題、摘要、內部連結與 CTA 很難持續改善。</p>
           </article>
           <article>
-            <span aria-hidden="true">03</span>
+            <span class="card-num" aria-hidden="true">03</span>
             <h3>報告有數字，但沒有下一步</h3>
             <p>看得到 sessions、impressions 與排名，卻沒有明確的問題診斷與行動排序。</p>
           </article>
           <article>
-            <span aria-hidden="true">04</span>
+            <span class="card-num" aria-hidden="true">04</span>
             <h3>社群、電子報與網站內容沒有串起來</h3>
             <p>每個渠道各做各的，長文投入沒有延伸成電子報、貼文與商品頁支持內容。</p>
           </article>
         </div>
       </section>
 
+      <!-- SERVICES -->
       <section class="section services-section" id="services" aria-labelledby="services-title">
-        <div class="section-heading">
-          <p class="eyebrow">Core Services</p>
-          <h2 id="services-title">把搜尋策略、內容製作與成效回報做成同一套節奏</h2>
-        </div>
+        <header class="section-heading">
+          <p class="eyebrow"><span class="num">02</span>Core Services</p>
+          <h2 id="services-title">把搜尋策略、內容製作與成效回報，做成同一套節奏</h2>
+          <p class="section-lede">五個彼此銜接的服務，圍繞同一份內容資產持續累積。挑單一服務或整套節奏皆可。</p>
+        </header>
         <div class="service-grid">
           <article class="service-card">
-            <div class="service-icon" aria-hidden="true">SEO</div>
+            <div class="service-card-head">
+              <span class="service-tag">SEO</span>
+              <span class="service-id">／01</span>
+            </div>
             <h3>SEO Strategy</h3>
             <p>關鍵字機會盤點、搜尋意圖分類、高曝光低 CTR 查找、SEO title 與 meta description 優化。</p>
+            <ul class="service-bullets">
+              <li>機會清單與優先順序</li>
+              <li>內容缺口分析</li>
+              <li>既有頁面再優化</li>
+            </ul>
           </article>
           <article class="service-card">
-            <div class="service-icon" aria-hidden="true">Hub</div>
+            <div class="service-card-head">
+              <span class="service-tag">Hub</span>
+              <span class="service-id">／02</span>
+            </div>
             <h3>Content Operations</h3>
             <p>內容中心、pillar article、supporting articles、FAQ、延伸閱讀、內部連結與產品 CTA。</p>
+            <ul class="service-bullets">
+              <li>主題內容中心規劃</li>
+              <li>繁體中文 SEO 長文</li>
+              <li>FAQ 與結構化內容</li>
+            </ul>
           </article>
           <article class="service-card">
-            <div class="service-icon" aria-hidden="true">Shop</div>
+            <div class="service-card-head">
+              <span class="service-tag">Shop</span>
+              <span class="service-id">／03</span>
+            </div>
             <h3>Shopify SEO</h3>
             <p>文章 HTML、圖片 alt text、CDN 圖片、schema、canonical、redirect 與追蹤碼檢查。</p>
+            <ul class="service-bullets">
+              <li>Blog 發佈流程</li>
+              <li>商品卡片與 CTA</li>
+              <li>Sitemap 與 redirect</li>
+            </ul>
           </article>
           <article class="service-card">
-            <div class="service-icon" aria-hidden="true">KPI</div>
+            <div class="service-card-head">
+              <span class="service-tag">KPI</span>
+              <span class="service-id">／04</span>
+            </div>
             <h3>Reporting</h3>
             <p>GSC、GA4、Shopify 與 Ahrefs 週報或月報，整理 top pages、top queries 與優化任務。</p>
+            <ul class="service-bullets">
+              <li>週報與月報</li>
+              <li>Top pages / queries</li>
+              <li>下一步行動清單</li>
+            </ul>
           </article>
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">Reuse</div>
+          <article class="service-card service-card--wide">
+            <div class="service-card-head">
+              <span class="service-tag">Reuse</span>
+              <span class="service-id">／05</span>
+            </div>
             <h3>Repurposing</h3>
-            <p>把長文改寫成電子報、Shopify Email HTML、Facebook、Instagram 與 Threads 內容。</p>
+            <p>把長文改寫成電子報、Shopify Email HTML、Facebook、Instagram 與 Threads 內容，延長每篇內容的生命週期。</p>
+            <ul class="service-bullets service-bullets--row">
+              <li>EDM 改寫</li>
+              <li>Shopify Email HTML</li>
+              <li>FB · IG · Threads 文案</li>
+              <li>內容排程</li>
+            </ul>
           </article>
         </div>
       </section>
 
+      <!-- PROCESS -->
       <section class="section process-section" id="process" aria-labelledby="process-title">
-        <div class="media-column">
-          <img src="/assets/ascdm-process.png" alt="關鍵字研究、內容規劃、發佈與報告的營運流程視覺" />
-        </div>
-        <div class="content-column">
-          <p class="eyebrow">Operating Rhythm</p>
+        <header class="section-heading">
+          <p class="eyebrow"><span class="num">03</span>Operating Rhythm</p>
           <h2 id="process-title">不是一次性交付，而是每週都能前進的工作流</h2>
+          <p class="section-lede">六個步驟形成可重複的迴圈，從資料到內容、從發佈到延伸，再回到下一輪優化。</p>
+        </header>
+
+        <div class="process-grid">
           <ol class="process-list">
             <li>
-              <strong>Diagnose</strong>
-              <span>整理現有資料、網站狀態與搜尋表現。</span>
+              <div class="process-marker"><span>01</span></div>
+              <div class="process-body">
+                <h3>Diagnose · 診斷</h3>
+                <p>整理現有資料、網站狀態與搜尋表現，找出最值得處理的問題。</p>
+              </div>
             </li>
             <li>
-              <strong>Prioritize</strong>
-              <span>依搜尋量、排名、CTR、商業意圖與內容缺口排序。</span>
+              <div class="process-marker"><span>02</span></div>
+              <div class="process-body">
+                <h3>Prioritize · 排序</h3>
+                <p>依搜尋量、排名、CTR、商業意圖與內容缺口排出可執行清單。</p>
+              </div>
             </li>
             <li>
-              <strong>Produce</strong>
-              <span>撰寫或優化內容，加入 FAQ、內部連結、產品 CTA 與圖片。</span>
+              <div class="process-marker"><span>03</span></div>
+              <div class="process-body">
+                <h3>Produce · 撰寫</h3>
+                <p>撰寫或優化內容，加入 FAQ、內部連結、產品 CTA 與圖片。</p>
+              </div>
             </li>
             <li>
-              <strong>Publish</strong>
-              <span>上架到 Shopify 或網站，處理 SEO 欄位、schema 與追蹤。</span>
+              <div class="process-marker"><span>04</span></div>
+              <div class="process-body">
+                <h3>Publish · 發佈</h3>
+                <p>上架到 Shopify 或網站，處理 SEO 欄位、schema、canonical 與追蹤。</p>
+              </div>
             </li>
             <li>
-              <strong>Report</strong>
-              <span>定期回顧 KPI，提出下一輪優化清單。</span>
+              <div class="process-marker"><span>05</span></div>
+              <div class="process-body">
+                <h3>Report · 回報</h3>
+                <p>每週或每月回顧 KPI，提出下一輪優化清單與責任分工。</p>
+              </div>
             </li>
             <li>
-              <strong>Repurpose</strong>
-              <span>將重點內容延伸到 email 與社群。</span>
+              <div class="process-marker"><span>06</span></div>
+              <div class="process-body">
+                <h3>Repurpose · 延伸</h3>
+                <p>將重點內容延伸到電子報與社群，延長每篇文章的生命週期。</p>
+              </div>
             </li>
           </ol>
+
+          <aside class="process-media">
+            <figure>
+              <img src="assets/ascdm-process.png" alt="關鍵字研究、內容規劃、發佈與報告的營運流程視覺" />
+              <figcaption>
+                <span class="cap-key">節奏</span>
+                <span>每週 1 次回顧 · 每月 1 次重排序</span>
+              </figcaption>
+            </figure>
+          </aside>
         </div>
       </section>
 
+      <!-- WORKING PATTERN -->
       <section class="section example-section" aria-labelledby="example-title">
-        <div class="section-heading">
-          <p class="eyebrow">Working Pattern</p>
-          <h2 id="example-title">我們關心的不只是內容產出，而是內容如何被發現、點擊與持續改善</h2>
-        </div>
+        <header class="section-heading section-heading--light">
+          <p class="eyebrow eyebrow--light"><span class="num">04</span>Working Pattern</p>
+          <h2 id="example-title">我們關心的不只是內容產出，<br/>而是內容如何被發現、點擊與持續改善</h2>
+        </header>
         <div class="example-grid">
-          <p>從 Ahrefs 與 GSC 找出高潛力關鍵字，建立可排序的內容機會清單。</p>
-          <p>將主題拆成 pillar 與 supporting articles，讓品牌建立完整的搜尋覆蓋。</p>
-          <p>發佈到 Shopify 並完成 SEO 欄位、圖片、內部連結與產品 CTA。</p>
-          <p>用 GA4/GSC 追蹤流量、排名與 CTR，再轉成下一輪優化任務。</p>
-          <p>把內容改寫成 email 與社群貼文，延長每篇內容的生命週期。</p>
+          <article>
+            <span class="ex-step">A</span>
+            <p>從 Ahrefs 與 GSC 找出高潛力關鍵字，建立可排序的內容機會清單。</p>
+          </article>
+          <article>
+            <span class="ex-step">B</span>
+            <p>將主題拆成 pillar 與 supporting articles，建立完整的搜尋覆蓋。</p>
+          </article>
+          <article>
+            <span class="ex-step">C</span>
+            <p>發佈到 Shopify 並完成 SEO 欄位、圖片、內部連結與產品 CTA。</p>
+          </article>
+          <article>
+            <span class="ex-step">D</span>
+            <p>用 GA4 / GSC 追蹤流量、排名與 CTR，再轉成下一輪優化任務。</p>
+          </article>
+          <article>
+            <span class="ex-step">E</span>
+            <p>把內容改寫成 email 與社群貼文，延長每篇內容的生命週期。</p>
+          </article>
         </div>
       </section>
 
+      <!-- REPORTING -->
       <section class="section reporting-section" id="reporting" aria-labelledby="reporting-title">
-        <div class="content-column">
-          <p class="eyebrow">Reporting & Transparency</p>
-          <h2 id="reporting-title">每份報告都要回答：發生什麼、為什麼重要、下一步做什麼</h2>
-          <p>
-            KPI 不只看 sessions，也看 impressions、CTR、average position、landing pages、bounce rate、traffic source
-            與內容頁表現。報告會把問題轉成任務，例如重寫 meta description、補內容缺口、加強內部連結或建立新支援文章。
-          </p>
-          <ul class="metric-list">
-            <li>Top pages 與 top queries 分析</li>
-            <li>裝置、地區與流量來源拆解</li>
-            <li>CTR、平均排名與跳出率追蹤</li>
-            <li>內容成效回顧與下一步行動清單</li>
-          </ul>
-        </div>
-        <div class="media-column">
-          <img src="/assets/ascdm-reporting.png" alt="SEO 與電商成效報告、折線圖和 KPI 卡片視覺" />
+        <div class="reporting-grid">
+          <div class="reporting-content">
+            <p class="eyebrow"><span class="num">05</span>Reporting & Transparency</p>
+            <h2 id="reporting-title">每份報告都要回答：<br/>發生什麼、為什麼重要、下一步做什麼</h2>
+            <p class="section-lede">
+              KPI 不只看 sessions，也看 impressions、CTR、average position、landing pages、bounce rate、traffic source
+              與內容頁表現。報告會把問題轉成任務，例如重寫 meta description、補內容缺口、加強內部連結或建立新支援文章。
+            </p>
+            <ul class="metric-list">
+              <li>
+                <span class="metric-key">／</span>
+                <span class="metric-text">Top pages 與 top queries 分析</span>
+              </li>
+              <li>
+                <span class="metric-key">／</span>
+                <span class="metric-text">裝置、地區與流量來源拆解</span>
+              </li>
+              <li>
+                <span class="metric-key">／</span>
+                <span class="metric-text">CTR、平均排名與跳出率追蹤</span>
+              </li>
+              <li>
+                <span class="metric-key">／</span>
+                <span class="metric-text">內容成效回顧與下一步行動清單</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="reporting-media">
+            <figure>
+              <img src="assets/ascdm-reporting.png" alt="SEO 與電商成效報告、折線圖和 KPI 卡片視覺" />
+            </figure>
+            <div class="reporting-kpis" aria-hidden="true">
+              <div class="kpi">
+                <span class="kpi-label">CTR</span>
+                <span class="kpi-value">4.8<small>%</small></span>
+                <span class="kpi-delta up">▲ 1.2pt</span>
+              </div>
+              <div class="kpi">
+                <span class="kpi-label">Avg. position</span>
+                <span class="kpi-value">12.4</span>
+                <span class="kpi-delta up">▲ 3.1</span>
+              </div>
+              <div class="kpi">
+                <span class="kpi-label">Top page traffic</span>
+                <span class="kpi-value">2.3<small>k</small></span>
+                <span class="kpi-delta up">▲ 22%</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="final-cta" aria-labelledby="final-cta-title">
-        <div>
-          <p class="eyebrow">Start the Rhythm</p>
-          <h2 id="final-cta-title">想把 SEO、內容與報告變成固定成長節奏？</h2>
-          <p>
-            如果你的品牌已經有網站、產品或內容基礎，但需要更清楚的搜尋策略與持續執行節奏，請寄信到
-            sales@ascdm.cc。
-          </p>
+      <!-- FINAL CTA -->
+      <section class="final-cta" id="contact" aria-labelledby="final-cta-title">
+        <div class="final-cta-inner">
+          <div class="final-cta-text">
+            <p class="eyebrow eyebrow--light"><span class="num">06</span>Start the Rhythm</p>
+            <h2 id="final-cta-title">想把 SEO、內容與報告<br/>變成固定的成長節奏？</h2>
+            <p>
+              如果你的品牌已經有網站、產品或內容基礎，但需要更清楚的搜尋策略與持續執行節奏，請寄信到
+              <a href="mailto:sales@ascdm.cc">sales@ascdm.cc</a>。
+              我們會回覆一份初步的觀察與下一步建議。
+            </p>
+          </div>
+          <div class="final-cta-actions">
+            <a class="primary-cta primary-cta--invert" href="mailto:sales@ascdm.cc">
+              <span>聯絡 sales@ascdm.cc</span>
+              <svg viewBox="0 0 16 16" aria-hidden="true" width="16" height="16">
+                <path d="M3 8h9M8.5 4 12.5 8 8.5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <span class="final-meta">回覆時間 1–2 個工作天</span>
+          </div>
         </div>
-        <a class="primary-cta" href="mailto:sales@ascdm.cc">聯絡 sales@ascdm.cc</a>
       </section>
+
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img src="assets/ascdm-logo.svg" alt="" width="28" height="28" />
+          <div>
+            <strong>上升數位行銷顧問</strong>
+            <small>Ascendant Digital Marketing Consultancy · Kaohsiung, Taiwan</small>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <a href="mailto:sales@ascdm.cc">sales@ascdm.cc</a>
+          <span>© 2026 ASCDM · ascdm.cc</span>
+        </div>
+      </footer>
     </main>
-  </body>
+</body>
 </html>
