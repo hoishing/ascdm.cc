@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>上升數位行銷顧問｜銷售簡報 Sales Deck</title>
+  <meta name="description" content="上升數位行銷顧問銷售簡報：SEO、內容營運、Shopify、報告、社群再利用,以及加值能力與案例範例。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ascdm.cc/deck/" />
+  <meta property="og:title" content="上升數位行銷顧問｜銷售簡報" />
+  <meta property="og:description" content="把搜尋需求變成可持續成長的內容營運系統 — 完整服務簡報。" />
+  <meta property="og:image" content="https://ascdm.cc/assets/ascdm-hero.png" />
+  <link rel="canonical" href="https://ascdm.cc/deck/" />
+  <link rel="icon" type="image/svg+xml" href="../assets/ascdm-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+
+  <style>
+    :root {
+      --ink: #0b1726;
+      --ink-soft: #1b2a3f;
+      --brand: #005c8a;
+      --brand-soft: #b7d9ec;
+      --amber: #c77a1f;
+      --amber-soft: #f1d6a9;
+      --green: #1f7a55;
+      --paper: #f7f4ee;
+      --paper-soft: #ffffff;
+      --hair: #e4e7ed;
+      --muted: #60718c;
+      --body: #324562;
+      --font-sans: "Manrope", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    html, body { background: var(--paper); }
+    .reveal { font-family: var(--font-sans); color: var(--body); }
+    .reveal .slides section {
+      text-align: left;
+      padding: 56px 64px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+    .reveal .slides section.dark { background: var(--ink); color: #e1eef8; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: var(--font-sans); color: var(--ink); margin: 0; }
+    .reveal .dark h1, .reveal .dark h2, .reveal .dark h3 { color: #fff; }
+    .reveal h2 { font-size: 44px; font-weight: 800; line-height: 1.2; }
+    .reveal h3 { font-size: 22px; font-weight: 700; line-height: 1.25; }
+    .reveal em { font-style: italic; color: var(--brand); }
+    .reveal p { margin: 12px 0; }
+    .reveal a { color: var(--brand); }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brand);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dark .eyebrow { color: var(--brand-soft); }
+    .eyebrow .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+
+    .lede { font-size: 18px; color: var(--muted); margin-top: 14px; }
+    .dark .lede { color: #8fa0bc; }
+
+    .row { display: grid; gap: 16px; }
+    .row.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .row.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .row.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .row.cols-5 { grid-template-columns: repeat(5, 1fr); }
+    .row.cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+    .card {
+      background: var(--paper-soft);
+      border: 1px solid var(--hair);
+      border-left: 3px solid var(--brand);
+      border-radius: 6px;
+      padding: 20px;
+    }
+    .card.accent-amber { border-left-color: var(--amber); }
+    .card.accent-green { border-left-color: var(--green); }
+    .dark .card {
+      background: var(--ink-soft);
+      border-color: var(--ink-soft);
+      border-left-color: var(--amber);
+      color: #c8d7e8;
+    }
+    .dark .card h3 { color: #fff; }
+    .card .num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .card h3 { margin-bottom: 10px; }
+    .card p { font-size: 15px; line-height: 1.55; color: var(--body); margin: 0; }
+    .dark .card p { color: #c8d7e8; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(199, 122, 31, 0.12);
+      color: var(--amber);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Cover slide */
+    .cover-shell {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 540px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-shell::before {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(closest-side, rgba(0, 92, 138, 0.55), transparent);
+      pointer-events: none;
+    }
+    .cover-shell::after {
+      content: "";
+      position: absolute;
+      left: -100px;
+      bottom: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(199, 122, 31, 0.4), transparent);
+      pointer-events: none;
+    }
+    .cover-shell h1 {
+      font-size: 56px;
+      line-height: 1.15;
+      font-weight: 800;
+      color: #fff;
+      max-width: 920px;
+    }
+    .cover-shell .subtitle {
+      font-size: 22px;
+      font-style: italic;
+      color: #c8d7e8;
+      max-width: 760px;
+    }
+    .cover-shell .footer-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .cover-shell .accent-line {
+      width: 80px;
+      height: 3px;
+      background: var(--amber);
+      margin-bottom: 12px;
+    }
+
+    /* Outcome stat */
+    .stat-num {
+      font-family: var(--font-sans);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .stat-label { display: block; font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+    /* Two-col layout */
+    .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+
+    .scope-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--paper-soft);
+      border: 1px solid var(--hair);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .scope-num {
+      font-family: var(--font-sans);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--amber);
+      min-width: 64px;
+    }
+    .scope-label { font-size: 14px; color: var(--body); }
+
+    /* Process flow */
+    .process-flow {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+    .process-step {
+      background: var(--paper-soft);
+      border: 1px solid var(--hair);
+      border-left: 3px solid var(--brand);
+      padding: 16px;
+      border-radius: 6px;
+      position: relative;
+    }
+    .process-step .step-n {
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .process-step h3 { font-size: 16px; margin-bottom: 6px; }
+    .process-step p { font-size: 12px; color: var(--body); margin: 0; }
+
+    /* Content engine architecture */
+    .engine {
+      position: relative;
+      height: 380px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .node {
+      position: absolute;
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .node small { display: block; font-weight: 400; font-size: 11px; color: var(--brand-soft); margin-top: 4px; }
+    .node.brand { background: var(--brand); }
+    .node.amber { background: var(--amber); }
+    .node.green { background: var(--green); }
+    .engine .anchor { left: 42%; top: 0; width: 16%; }
+    .engine .pillar { left: 42%; top: 28%; width: 16%; }
+    .engine .out-1 { left: 0; top: 58%; width: 18%; }
+    .engine .out-2 { left: 22%; top: 58%; width: 18%; }
+    .engine .out-3 { left: 60%; top: 58%; width: 18%; }
+    .engine .out-4 { left: 82%; top: 58%; width: 18%; }
+    .engine .analytics { right: 0; top: 0; width: 22%; }
+    .engine svg.lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Engagement model */
+    .tier { font-size: 11px; letter-spacing: 0.18em; font-weight: 700; color: var(--amber); margin-bottom: 8px; display: block; }
+    .model-title { font-size: 22px; font-weight: 800; color: var(--ink); }
+    .model-sub { font-size: 13px; color: var(--muted); margin: 6px 0 14px; }
+    .model-desc { font-size: 14px; color: var(--body); }
+    .model-fit { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 12px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+    /* CTA tile */
+    .cta-tile {
+      background: var(--paper-soft);
+      border: 1px solid var(--hair);
+      border-top: 3px solid var(--amber);
+      padding: 24px;
+      border-radius: 6px;
+    }
+    .cta-tile .label { font-size: 11px; letter-spacing: 0.18em; font-weight: 700; color: var(--amber); }
+    .cta-tile .value { font-size: 22px; font-weight: 800; color: var(--ink); margin: 8px 0 4px; word-break: break-word; }
+    .cta-tile .sub { font-size: 13px; color: var(--body); }
+
+    /* Closing band */
+    .closing {
+      margin-top: 24px;
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+      padding: 18px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 6px;
+    }
+    .dark .closing { background: var(--brand); }
+
+    .table-3 {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    .table-3 thead th {
+      text-align: left;
+      font-size: 18px;
+      color: var(--ink);
+      padding: 12px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .table-3 td {
+      padding: 12px;
+      border-bottom: 1px solid var(--hair);
+      color: var(--body);
+      vertical-align: top;
+    }
+
+    .footnote { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 16px; }
+
+    .progress-link {
+      position: fixed;
+      top: 16px;
+      right: 24px;
+      z-index: 50;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+    }
+    .progress-link:hover { background: #fff; }
+  </style>
+</head>
+<body>
+  <a class="progress-link" href="/">← ascdm.cc</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Slide 1: Cover -->
+      <section class="dark" data-background-color="#0b1726">
+        <div class="cover-shell">
+          <div>
+            <p class="eyebrow"><span class="dot"></span>Ascendant Digital Marketing · 上升數位行銷顧問</p>
+            <div class="accent-line"></div>
+            <h1>讓搜尋需求變成<br/><em style="color:#f1d6a9;">可持續成長</em>的內容營運系統</h1>
+            <p class="subtitle">Turn search demand into a sustainable content operations system.</p>
+          </div>
+          <div class="footer-info">
+            <div>
+              <p style="margin:0; font-size:13px; color:#8fa0bc; letter-spacing:0.18em; text-transform:uppercase;">Sales Deck · 2026</p>
+              <p style="margin:6px 0 0; font-size:16px; color:#fff; font-weight:700;">sales@ascdm.cc</p>
+              <p style="margin:2px 0 0; font-size:14px; color:#8fa0bc;">ascdm.cc · Taiwan · Kaohsiung</p>
+            </div>
+            <span class="pill">13 slides · 15 min</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Problem -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>01 · The Problem</p>
+        <h2>你的內容不是不夠多,<br/>而是缺少可追蹤的營運系統</h2>
+        <p class="lede">Common gaps we see across Taiwanese DTC and Shopify brands.</p>
+        <div class="row cols-2" style="margin-top: 24px;">
+          <div class="card"><span class="num">01</span><h3>無法判斷優先順序</h3><p>有關鍵字資料,但不知道哪些值得先做。</p></div>
+          <div class="card"><span class="num">02</span><h3>發了卻沒在追</h3><p>文章上線後沒人追 CTR、排名、跳出率。</p></div>
+          <div class="card"><span class="num">03</span><h3>報告只剩數字</h3><p>月報列了流量,但沒有問題診斷與下一步。</p></div>
+          <div class="card"><span class="num">04</span><h3>內容各做各的</h3><p>SEO、Email、社群、商品頁互相獨立,無法重複利用。</p></div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Positioning -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>02 · Positioning</p>
+        <h2>不是廣告代理商,<br/>是搜尋與內容的營運顧問</h2>
+        <p style="font-size:17px; max-width: 900px; margin-top: 18px;">
+          我們不做爆量行銷,也不靠廣告投放堆數字。我們把「關鍵字研究 → 內容規劃 → 發佈流程 → SEO 技術細節 → 電郵與社群延伸 → 成效追蹤」做成日常可重複的營運節奏。
+        </p>
+        <div class="row cols-3" style="margin-top: 28px;">
+          <div class="card">
+            <span class="num" style="color: var(--brand);">ENGINEERED</span>
+            <h3 style="font-size: 26px;">工程化</h3>
+            <p>用資料、自動化、流程降低重複工作。</p>
+          </div>
+          <div class="card accent-amber">
+            <span class="num">LOCALIZED</span>
+            <h3 style="font-size: 26px;">在地化</h3>
+            <p>繁體中文搜尋與內容深度。</p>
+          </div>
+          <div class="card accent-green">
+            <span class="num" style="color: var(--green);">ACCOUNTABLE</span>
+            <h3 style="font-size: 26px;">可驗證</h3>
+            <p>每篇內容與每次優化都能追蹤回 GSC / GA4 KPI。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Core services -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>03 · Core Services</p>
+        <h2>五項核心服務,圍繞「搜尋 → 內容 → 數據」閉環</h2>
+        <div class="row cols-3" style="margin-top: 22px;">
+          <div class="card"><span class="num">01 · SEO</span><h3>SEO Strategy</h3><p>關鍵字機會盤點、高曝光低 CTR 查找、內容缺口分析、搜尋意圖分類。</p></div>
+          <div class="card"><span class="num">02 · HUB</span><h3>Content Operations</h3><p>主題內容中心(pillar + supporting)、繁中 SEO 長文、FAQ、產品導購整合。</p></div>
+          <div class="card"><span class="num">03 · SHOP</span><h3>Shopify SEO</h3><p>Shopify blog 發佈流程、SEO 欄位、schema、CDN 圖片、redirect / canonical。</p></div>
+        </div>
+        <div class="row cols-2" style="margin-top: 14px;">
+          <div class="card accent-amber"><span class="num">04 · KPI</span><h3>Analytics Reporting</h3><p>GSC / GA4 / Shopify / Ahrefs 整合月報、Top pages 與 queries 拆解、Action 清單。</p></div>
+          <div class="card accent-amber"><span class="num">05 · REUSE</span><h3>Repurposing</h3><p>長文改寫成電子報、FB / IG / Threads 文案、內容排程與再利用。</p></div>
+        </div>
+      </section>
+
+      <!-- Slide 5: Extended -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>04 · Extended Capabilities</p>
+        <h2>需要時,我們也能補上製作與技術端</h2>
+        <p class="lede">加值能力 — 擴充選項,核心仍以 SEO 與內容營運為主軸。</p>
+        <div class="row cols-5" style="margin-top: 24px;">
+          <div class="card accent-amber"><span class="badge">加值能力</span><h3>Video SEO</h3><p>YouTube 標題/描述/章節優化、繁中 ASR 字幕、批次上傳。</p></div>
+          <div class="card accent-amber"><span class="badge">加值能力</span><h3>Visual &amp; Graphic</h3><p>向量圖、產品說明圖、社群圖文、Shopify 圖片優化。</p></div>
+          <div class="card accent-amber"><span class="badge">加值能力</span><h3>Shopify Theme Dev</h3><p>客製主題、區塊與 section 開發、效能優化。</p></div>
+          <div class="card accent-amber"><span class="badge">加值能力</span><h3>Newsletter Ops</h3><p>Shopify Email 模板、寄送節奏、效果追蹤。</p></div>
+          <div class="card accent-amber"><span class="badge">加值能力</span><h3>Automation</h3><p>排程發文、API 串接、Python 工具與 GitHub Actions。</p></div>
+        </div>
+      </section>
+
+      <!-- Slide 6: Operating loop -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>05 · Operating Loop</p>
+        <h2>六步營運循環,每月節奏可預期</h2>
+        <div class="process-flow" style="margin-top: 24px;">
+          <div class="process-step"><span class="step-n">1</span><h3>Diagnose</h3><p>盤點現有資料、網站狀態、搜尋表現。</p></div>
+          <div class="process-step"><span class="step-n">2</span><h3>Prioritize</h3><p>依搜尋量、CTR、商業意圖、內容缺口排序。</p></div>
+          <div class="process-step"><span class="step-n">3</span><h3>Produce</h3><p>撰寫或優化內容,加 FAQ、內部連結、CTA。</p></div>
+          <div class="process-step"><span class="step-n">4</span><h3>Publish</h3><p>Shopify 或網站上架,SEO 欄位、schema、追蹤。</p></div>
+          <div class="process-step"><span class="step-n">5</span><h3>Report</h3><p>週 / 月報告,KPI 回顧 + 下一輪任務。</p></div>
+          <div class="process-step"><span class="step-n">6</span><h3>Repurpose</h3><p>重點內容延伸到 email 與社群。</p></div>
+        </div>
+        <p class="footnote" style="text-align: center; margin-top: 26px;">
+          Output of step 6 feeds back into step 1 — every cycle compounds.
+        </p>
+      </section>
+
+      <!-- Slide 7: Case study scope -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>06 · Case Study (Anonymous)</p>
+        <h2>某台灣口腔保健領導品牌 — Year 1</h2>
+        <div class="split" style="margin-top: 22px;">
+          <div class="card" style="padding: 24px;">
+            <span class="num" style="color: var(--brand);">BRAND CONTEXT</span>
+            <h3 style="font-size: 20px; margin: 6px 0 14px;">在地電商,缺少可衡量的成長節奏</h3>
+            <p style="font-size: 15px;">台灣口腔保健領導品牌,已有產品與電商網站,但 SEO、內容、社群、電子報各自為政。</p>
+            <p style="font-size: 15px; margin-top: 12px;">我們從 0 開始,協助建立完整內容引擎:關鍵字研究、內容中心、Shopify 發佈、自動化社群、月報追蹤,全部串成同一條流水線。</p>
+          </div>
+          <div>
+            <span class="num" style="color: var(--amber); font-family: var(--font-mono); font-size:13px; letter-spacing:0.12em; font-weight:600;">YEAR 1 SCOPE</span>
+            <div style="margin-top: 12px;">
+              <div class="scope-row"><span class="scope-num">50+</span><span class="scope-label">繁中 SEO 長文(pillar + supporting)</span></div>
+              <div class="scope-row"><span class="scope-num">7</span><span class="scope-label">大主題內容中心</span></div>
+              <div class="scope-row"><span class="scope-num">200+</span><span class="scope-label">關鍵字研究資料庫</span></div>
+              <div class="scope-row"><span class="scope-num">90+</span><span class="scope-label">YouTube 影片優化</span></div>
+              <div class="scope-row"><span class="scope-num">25+</span><span class="scope-label">期電子報</span></div>
+              <div class="scope-row"><span class="scope-num">3</span><span class="scope-label">社群平台每日自動發佈</span></div>
+            </div>
+            <p class="footnote">數字為規模範圍,非實際 KPI。一年內持續累積。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 8: Content engine -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>07 · Content Engine</p>
+        <h2>一份關鍵字資料,驅動四種輸出</h2>
+        <div class="engine" style="margin-top: 16px;">
+          <svg class="lines" viewBox="0 0 1000 380" preserveAspectRatio="none">
+            <line x1="500" y1="60" x2="500" y2="105" stroke="#60718c" stroke-width="2" />
+            <polygon points="495,100 505,100 500,110" fill="#60718c"/>
+            <line x1="500" y1="170" x2="90" y2="220" stroke="#60718c" stroke-width="1.5"/>
+            <line x1="500" y1="170" x2="310" y2="220" stroke="#60718c" stroke-width="1.5"/>
+            <line x1="500" y1="170" x2="690" y2="220" stroke="#60718c" stroke-width="1.5"/>
+            <line x1="500" y1="170" x2="910" y2="220" stroke="#60718c" stroke-width="1.5"/>
+            <line x1="580" y1="30" x2="890" y2="30" stroke="#1f7a55" stroke-width="2" stroke-dasharray="6 4"/>
+            <polygon points="585,25 585,35 575,30" fill="#1f7a55"/>
+            <polygon points="885,25 885,35 895,30" fill="#1f7a55"/>
+          </svg>
+          <div class="node anchor">Keyword Research<small>Ahrefs + GSC + GA4</small></div>
+          <div class="node brand pillar">Pillar +<br/>Supporting Articles</div>
+          <div class="node amber out-1">Newsletter<small>Shopify Email</small></div>
+          <div class="node amber out-2">Social Posts<small>FB · IG · Threads</small></div>
+          <div class="node amber out-3">Video Content<small>YouTube</small></div>
+          <div class="node amber out-4">Product Pages<small>Shopify</small></div>
+          <div class="node green analytics">Analytics<small>Monthly Report</small></div>
+        </div>
+        <p class="footnote" style="text-align: center; margin-top: 16px;">內容生產一次,觸點四個渠道,KPI 一個閉環。</p>
+      </section>
+
+      <!-- Slide 9: Outcomes -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>08 · Outcomes</p>
+        <h2>Year 1 成效(等級描述)</h2>
+        <div class="row cols-4" style="margin-top: 24px;">
+          <div class="card">
+            <span class="num" style="color: var(--brand);">FIRST PAGE</span>
+            <h3>Search visibility</h3>
+            <p>Primary commercial keywords 進入 first page。</p>
+          </div>
+          <div class="card accent-amber">
+            <span class="num">TRIPLE-DIGIT</span>
+            <h3>Traffic growth</h3>
+            <p>Clicks / impressions / sessions MoM 雙倍以上增長。</p>
+          </div>
+          <div class="card accent-green">
+            <span class="num" style="color: var(--green);">FIVE-FIGURE</span>
+            <h3>Content depth</h3>
+            <p>核心 content hubs 月 impressions 五位數量級。</p>
+          </div>
+          <div class="card">
+            <span class="num" style="color: var(--brand);">DAILY</span>
+            <h3>Operational rhythm</h3>
+            <p>3 社群平台自動發佈,月報節奏穩定。</p>
+          </div>
+        </div>
+        <p class="footnote">實際數字依產業、競爭、預算與配合度而異;以上為 anonymized case 等級表述。</p>
+      </section>
+
+      <!-- Slide 10: Reporting rhythm -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>09 · Reporting</p>
+        <h2>報告不只是數字,是行動清單</h2>
+        <div class="row cols-3" style="margin-top: 22px;">
+          <div class="card">
+            <h3 style="font-size: 22px;">月報內含</h3>
+            <ul style="font-size: 14px; padding-left: 18px; margin-top: 12px;">
+              <li>GSC / GA4 / Shopify KPI</li>
+              <li>Top pages、queries 拆解</li>
+              <li>Backlink 與排名變動</li>
+              <li>問題診斷 + 下一輪 action 排序</li>
+            </ul>
+          </div>
+          <div class="card accent-amber">
+            <h3 style="font-size: 22px;">週同步</h3>
+            <ul style="font-size: 14px; padding-left: 18px; margin-top: 12px;">
+              <li>30 分鐘線上 sync</li>
+              <li>本週進度與卡點</li>
+              <li>下週重點確認</li>
+              <li>緊急議題即時回應</li>
+            </ul>
+          </div>
+          <div class="card accent-green">
+            <h3 style="font-size: 22px;">隨時可查</h3>
+            <ul style="font-size: 14px; padding-left: 18px; margin-top: 12px;">
+              <li>Notion 看板與儀表板</li>
+              <li>月內任務追蹤</li>
+              <li>內容上線狀態</li>
+              <li>GSC / GA4 直連報表</li>
+            </ul>
+          </div>
+        </div>
+        <div class="closing" style="margin-top: 22px;">
+          Each report answers 3 questions · What's happening · Why it matters · What to do next.
+        </div>
+      </section>
+
+      <!-- Slide 11: Engagement models -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>10 · Engagement Models</p>
+        <h2>三種合作方式,可拆可組合</h2>
+        <div class="row cols-3" style="margin-top: 22px;">
+          <div class="card">
+            <span class="tier">TIER 1</span>
+            <div class="model-title">Advisory Retainer</div>
+            <div class="model-sub">顧問月費</div>
+            <p class="model-desc">研究、策略、月報、行動建議;內容由你的團隊執行。</p>
+            <p class="model-fit">適合已有內容團隊,但缺少策略與報告節奏的品牌。</p>
+          </div>
+          <div class="card accent-amber">
+            <span class="tier">TIER 2</span>
+            <div class="model-title">Content Package</div>
+            <div class="model-sub">內容套餐</div>
+            <p class="model-desc">我們執行內容研究、撰寫、發佈;你的團隊負責業務面。</p>
+            <p class="model-fit">適合產品已上線、急需穩定內容產出的成長期品牌。</p>
+          </div>
+          <div class="card accent-green">
+            <span class="tier" style="color: var(--green);">TIER 3</span>
+            <div class="model-title">Full Operations</div>
+            <div class="model-sub">全包營運</div>
+            <p class="model-desc">從關鍵字研究、內容、發佈、社群到月報全程接手。</p>
+            <p class="model-fit">適合希望把 SEO 與內容外包成可預期營運的品牌。</p>
+          </div>
+        </div>
+        <p class="footnote" style="text-align: center;">預算依範圍與節奏客製;歡迎寄信 sales@ascdm.cc 討論。</p>
+      </section>
+
+      <!-- Slide 12: Why us -->
+      <section class="dark" data-background-color="#0b1726">
+        <p class="eyebrow"><span class="dot"></span>11 · Why Us</p>
+        <h2 style="color: #fff;">為什麼選上升</h2>
+        <p class="lede">Differentiators we can demonstrate with shipped work.</p>
+        <div class="row cols-2" style="margin-top: 22px;">
+          <div class="card"><span class="num">01</span><h3>Engineered operations</h3><p>自動化、Python 工具、GitHub Actions、資料庫驅動;降低重複工作。</p></div>
+          <div class="card"><span class="num">02</span><h3>Cross-platform integration</h3><p>Shopify、GSC、GA4、Ahrefs、YouTube、Threads / FB / IG 一條流水線。</p></div>
+          <div class="card"><span class="num">03</span><h3>Deep zh-TW content</h3><p>繁體中文搜尋意圖、在地用語、商業意圖判讀。</p></div>
+          <div class="card"><span class="num">04</span><h3>Shopify-native</h3><p>客製主題、Liquid、Admin API、Email 與 Shop SEO 完整經驗。</p></div>
+        </div>
+      </section>
+
+      <!-- Slide 13: Next steps -->
+      <section>
+        <p class="eyebrow"><span class="dot"></span>12 · Next Steps</p>
+        <h2>想把 SEO 變成固定成長節奏?</h2>
+        <p style="font-size: 17px; max-width: 900px; margin-top: 16px;">
+          如果你的品牌已經有網站、產品或內容基礎,但需要更清楚的搜尋策略與持續執行節奏,我們可以從 30 分鐘的免費診斷會議開始。
+        </p>
+        <div class="row cols-3" style="margin-top: 28px;">
+          <div class="cta-tile">
+            <span class="label">EMAIL</span>
+            <div class="value"><a href="mailto:sales@ascdm.cc" style="color: var(--ink); text-decoration: none;">sales@ascdm.cc</a></div>
+            <div class="sub">30 分鐘免費診斷</div>
+          </div>
+          <div class="cta-tile">
+            <span class="label">WEB</span>
+            <div class="value"><a href="/case-study/" style="color: var(--ink); text-decoration: none;">ascdm.cc/case-study</a></div>
+            <div class="sub">瀏覽完整案例</div>
+          </div>
+          <div class="cta-tile">
+            <span class="label">LOCATION</span>
+            <div class="value">Kaohsiung, TW</div>
+            <div class="sub">線上 / 實體會議</div>
+          </div>
+        </div>
+        <div class="closing">用數據找出需求,用內容建立信任,用營運節奏累積長期成長。</div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      controls: true,
+      progress: true,
+    });
+  </script>
+</body>
+</html>

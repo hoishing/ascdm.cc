@@ -1,3 +1,5 @@
+/.wrangler
+
 ### JavaScript ###
 .DS_Store
 .env
@@ -74,3 +76,7 @@ site/
 # custom
 try*
 secrets.toml
+
+# generated artifacts
+output/
+

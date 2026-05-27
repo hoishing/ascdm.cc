@@ -330,3 +330,33 @@ Model: gpt-image-2
 - CTA email 使用 `mailto:sales@ascdm.cc`。
 - 如果未來加入案例，避免揭露客戶敏感數字；可用「工作型態」與「改善方向」呈現。
 - UI 或功能實作時需新增或更新 e2e 測試；本 blueprint 本身不需要測試。
+
+## 站內結構(2026-05 擴展)
+
+主頁(`/index.html`)架構維持原 10 區塊節奏,但補上:
+
+1. Trust Bar 增列實際工作介面(Shopify Theme Dev、YouTube、Threads / IG / FB、Python · GitHub Actions)。
+2. Hero stat cards 改為長期可用的能力描述(100+ 篇內容資產、7 大主題中心、月/週同步節奏)。
+3. Services 區塊在原 Core 5 卡之後,新增 Extended Capabilities 區塊,呈現 5 項加值能力卡(Video SEO、Visual & Graphic、Shopify Theme Dev、Newsletter Ops、Automation Pipelines)。
+4. Process 之後、Working Pattern 之前新增 Case Study 區塊(`#case-study`)放 3 張匿名案例卡,連向 `/case-study/` 子頁與 `/deck/`。
+5. Nav 與 Footer 加上 `/case-study/`(案例)與 `/deck/`(銷售簡報)入口。
+
+### 新增子頁
+
+- `/case-study/index.html` — 某台灣口腔保健領導品牌 Year 1 完整匿名案例。8 段結構:Hero、Brand Context、Year 1 Scope、Content Engine(內嵌 SVG 架構圖)、Sample Deliverables、Operating Cadence、Outcomes(等級描述非具體 KPI)、CTA。
+- `/deck/index.html` — reveal.js 5.x 自包含銷售簡報(13 張),CDN 載入,SEO 友善(每張 slide 為真實 DOM)。Single source of truth 在 `~/.claude/plans/deck-content.md`。
+
+### .pptx 銷售簡報
+
+- 產出路徑:`/output/ascdm-sales-deck.pptx`(已加入 `.gitignore`)
+- 產出腳本:`/scripts/build_deck.js`,需先 `npm i -g pptxgenjs` 才能執行
+- 內容與 `/deck/index.html` 同步,皆來自 `~/.claude/plans/deck-content.md`
+- 重生指令:`NODE_PATH=$(npm root -g) node scripts/build_deck.js`
+
+### 內容匿名原則(維持不變)
+
+所有公開呈現的案例 — 主頁 case study 卡、`/case-study/` 子頁、`.pptx`、`/deck/` HTML — 都採:
+
+- 客戶稱呼「某台灣口腔保健領導品牌 / Leading oral care brand in Taiwan」
+- 規模描述用範圍(50+ 篇、200+ 關鍵字、90+ 影片)而非真實 KPI
+- 成效用等級語言(first page、triple-digit MoM、five-figure monthly impressions)而非具體百分比與絕對值
